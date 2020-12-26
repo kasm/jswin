@@ -1,0 +1,43 @@
+
+.jswin-main {
+    z-index: 100;
+    position: fixed;
+    width: 30px;
+    height: 20px;
+    left: 100px;
+    top: 100px;
+    border: 1px solid black;
+}
+
+.jstitle {
+    background-color: greenyellow;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    cursor: default;
+    margin: auto
+}
+
+.jswin-container {
+    width: 100%;
+    background-color: floralwhite;
+}
+.small {
+    transform: scale(0.1);
+    transition: transform 3s;
+}
+
+.jswin-cover {
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    z-index: 9999;
+    background: 'rgba(0,0,0,0)';
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+.jstitle span { 
+    padding: 0px 3px; 
+    cursor: pointer;
+}

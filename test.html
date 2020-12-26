@@ -1,0 +1,45 @@
+<html>
+<head>
+JS windows test page
+<link rel='stylesheet' href='jswin.css'>
+<link rel="stylesheet" href="jswin.css">
+</head>
+<body>
+    <h1>JS windows library</h1>
+<button>window1</button>
+<button>window2</button>
+<button>window3</button>
+<button>window4</button>
+<div id='elem3' style='margin: 0px'>&nbsp;
+    <h3>Content for window</h3>This content demonstrates how to move html element to the window
+</div>
+<script src='jswin.js'></script>
+<script>
+    var jswin = new JSWIN()
+
+    var buttons = document.querySelectorAll('button')
+    buttons[0].addEventListener('click', () => {
+        jswin.createWindow('<div>this is window content from html</div>', 
+            'window created from html string', {
+            l: 100, t: 200, s: [250, 100]
+        })
+    })
+
+    buttons[1].addEventListener('click', () => {
+        jswin.createWindow('#elem3', 'element moved to window', {
+            l: 110, t: 230, s: [200, 200]
+        })
+    })
+
+    buttons[2].addEventListener('click', () => {
+        jswin.createWindow('https://ixbt.com', 'iframe with site', {
+            l: 150, t: 250, s: [500, 400]
+        })
+    })
+
+    buttons[3].addEventListener('click', () => {
+        jswin.createWindow('<div>This window flys to target position</div>', 'fly window', {
+            l: 400, t: 200, s: [300, 300], trans: 1000
+        })
+    })
+</script>
