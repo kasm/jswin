@@ -10,7 +10,9 @@ function JSWIN() {
             feelX: 8,
             feelY: 8,
             defaultTitle: 'window',
-            backgroundColor: 'white'
+            backgroundColor: 'white',
+            defaultWidth: 250,
+            defaultHeight: 100
         }
 
     };
@@ -87,6 +89,9 @@ function JSWIN() {
                     fw.style.height = r.bottom - r.top - app.settings.titleHeight+ 'px'
                     setAttr(fw, 'height',  r.bottom - r.top )
                 }
+            } else { // no size, take default values
+                fw.style.width = app.settings.defaultWidth + 'px'
+                fw.style.height = app.settings.defaultHeight+ 'px'
             }
 
             if (pars.t) fw.style.top = pars.t + 'px'

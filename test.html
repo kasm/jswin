@@ -11,17 +11,19 @@ JS windows test page
 <button>window3</button>
 <button>window4</button>
 <div id='elem3' style='margin: 0px'>&nbsp;
-    <h3>Content for window</h3>This content demonstrates how to move html element to the window
+    <h3>Content for window</h3>
+    This content demonstrates how to move html element to the window. Click on 'window2' to see it.
 </div>
 <script src='jswin.js'></script>
+<script src='https://raw.githubusercontent.com/kasm/jswin/main/jswin.js'></script>
 <script>
     var jswin = new JSWIN()
 
     var buttons = document.querySelectorAll('button')
     buttons[0].addEventListener('click', () => {
-        jswin.createWindow('<div>this is window content from html</div>', 
+        jswin.createWindow('<div>This is window content from html</div>', 
             'window created from html string', {
-            l: 100, t: 200, s: [250, 100]
+            l: 100, t: 200 //  no size specified, use default
         })
     })
 
