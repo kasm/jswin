@@ -27,3 +27,6 @@ Paraeters is an object which contains all additional data to created window:
     s: [width, height],
     trans: transition time (milliseconds)
 }
+
+DEMO:
+http://jsfiddle.net/iasm/6mjq5ak8/3/
