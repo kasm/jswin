@@ -22,23 +22,23 @@ jswin.createWindow(elem, 'My title', parameters)
 jswin.createWindow('https://wikipedia.org', 'my title', parameters)
 
 Parameters
-Paraeters is an object which contains all additional data to created window:
-{
-    pos: <position expression>
-    size: <size expression>,
-    trans: transition time (milliseconds)
-}
+Paraeters is an object which contains all additional data to created window:\
+{\
+&nbsp;&nbsp;&nbsp;&nbsp;pos: `<position expression>`,\
+&nbsp;&nbsp;&nbsp;&nbsp;size: `<size expression>`,\
+&nbsp;&nbsp;&nbsp;&nbsp;trans: transition time (milliseconds)\
+}\ \
 
-where
-<positon expression> could be one of following:
-[x, y] - left and top corner of window, array
-'center' - position at center of window
+where\
+`<positon expression>` could be one of following:\
+&nbsp;&nbsp;&nbsp;&nbsp;[x, y] - left and top corner of window, array\
+&nbsp;&nbsp;&nbsp;&nbsp;'center' - position at center of window\ \
 
-<size expression> could be one of following:
-[width, height] - array of sizes
-{scale, ratio} - object with 'scale' and 'ratio' fields. 
-    scale relative to browser window 
-    ratio = width / height of window to create
-
-DEMO:
+`<size expression>` could be one of following:\
+&nbsp;&nbsp;&nbsp;&nbsp;[width, height] - array of sizes\
+&nbsp;&nbsp;&nbsp;&nbsp;{scale, ratio} - object with 'scale' and 'ratio' fields. \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scale relative to browser window \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ratio = width / height of window to create\
+\
+DEMO:\
 http://jsfiddle.net/iasm/6mjq5ak8/3/
