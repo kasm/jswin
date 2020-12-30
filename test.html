@@ -10,6 +10,7 @@ JS windows test page
 <button>window2</button>
 <button>window3</button>
 <button>window4</button>
+<button>window5</button>
 <div id='elem3' style='margin: 0px'>&nbsp;
     <h3>Content for window</h3>
     This content demonstrates how to move html element to the window. Click on 'window2' to see it.
@@ -23,25 +24,31 @@ JS windows test page
     buttons[0].addEventListener('click', () => {
         jswin.createWindow('<div>This is window content from html</div>', 
             'window created from html string', {
-            l: 100, t: 200 //  no size specified, use default
+            pos: [50, 200] //  no size specified, use default
         })
     })
 
     buttons[1].addEventListener('click', () => {
         jswin.createWindow('#elem3', 'element moved to window', {
-            l: 110, t: 230, s: [200, 200]
+            pos: [110, 230], size: [210, 220]
         })
     })
 
     buttons[2].addEventListener('click', () => {
         jswin.createWindow('https://ixbt.com', 'iframe with site', {
-            l: 150, t: 250, s: [500, 400]
+            pos: [150, 250], size: [500, 400]
         })
     })
 
     buttons[3].addEventListener('click', () => {
         jswin.createWindow('<div>This window flys to target position</div>', 'fly window', {
-            l: 400, t: 200, s: [300, 300], trans: 1000
+            pos: [400, 200], size: [300, 300], trans: 1000
+        })
+    })
+
+    buttons[4].addEventListener('click', () => {
+        jswin.createWindow('<div>Default position and size</div>', 'fly window', {
+            trans: 1000
         })
     })
 </script>

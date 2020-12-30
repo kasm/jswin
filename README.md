@@ -22,11 +22,21 @@ jswin.createWindow('https://wikipedia.org', 'my title', parameters)
 Parameters
 Paraeters is an object which contains all additional data to created window:
 {
-    l: left position (in pixels)
-    t: top position (in pixels)
-    s: [width, height],
+    pos: <position expression>
+    size: <size expression>,
     trans: transition time (milliseconds)
 }
+
+where
+<positon expression> could be one of following:
+[x, y] - left and top corner of window, array
+'center' - position at center of window
+
+<size expression> could be one of following:
+[width, height] - array of sizes
+{scale, ratio} - object with 'scale' and 'ratio' fields. 
+    scale relative to browser window 
+    ratio = width / height of window to create
 
 DEMO:
 http://jsfiddle.net/iasm/6mjq5ak8/3/

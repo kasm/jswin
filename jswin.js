@@ -1,5 +1,18 @@
 
 function JSWIN() {
+    isObject = function(a) {
+        return (!!a) && (a.constructor === Object);
+    };
+
+    function getSizeByRatio(parentSize, ratio, scale) { // ratio = x / y
+        let sx = parentSize[0] * scale;
+        let sy = parentSize[1] * scale;
+        if (sx / sy > ratio) { // big window width, then restrict by height
+            return [sy * ratio, sy]
+        } else { // big height, then restrict by width
+            return [sx, sx / ratio]
+        }
+    }
     function getStyleText(n) {
         return (typeof n === 'number') ? n + 'px' : n
     }
@@ -12,7 +25,10 @@ function JSWIN() {
             defaultTitle: 'window',
             backgroundColor: 'white',
             defaultWidth: 250,
-            defaultHeight: 100
+            defaultHeight: 100,
+            defaultRatio: 1,
+            defaultScale: 0.5 // relative to browser window
+
         }
 
     };
@@ -70,31 +86,61 @@ function JSWIN() {
         activeActiveWindow = fw;
 
         if (pars) {
-            if (pars.l) {
-                fw.style.left = pars.l + 'px'
-            }
-            if (pars.s) {
-                if (Array.isArray(pars.s)) {
-                    let w = pars.s[0]
-                    if (typeof pars.s[0] === 'number') w += 'px'
+           
+
+            let ww = window.innerWidth
+            let wh = window.innerHeight
+            
+            if (pars.size) {
+                if (Array.isArray(pars.size)) {
+                    let w = pars.size[0]
+                    if (typeof pars.size[0] === 'number') w += 'px'
                     fw.style.width = w;
-                    let h = pars.s[1] + app.settings.titleHeight
-                    fw.style.height = pars.s[1] //+ 'px'
-                    if (typeof pars.s[1] === 'number') h += 'px'
+                    let h = pars.size[1] + app.settings.titleHeight
+                    fw.style.height = pars.size[1] //+ 'px'
+                    if (typeof pars.size[1] === 'number') h += 'px'
                     fw.style.height = h
                 }
-                if (pars.s === 'inherit') {
+                if (isObject(pars.size)) {
+                    debugger
+                    let currRatio = app.settings.defaultRatio
+                    if (pars.size.ratio) currRatio = pars.size.ratio
+                    let currScale = app.settings.defaultScale
+                    if (pars.size.scale) currScale = pars.size.scale
+                    let size = getSizeByRatio([ww, wh], 
+                        app.settings.defaultRatio, app.settings.defaultScale)
+                    fw.style.width = app.settings.defaultWidth + 'px'
+                    fw.style.height = app.settings.defaultHeight+ 'px'
+                }
+                if (pars.size === 'inherit') {
                     let r = el.getBoundingClientRect();
                     fw.style.width = r.right - r.left + 'px'
                     fw.style.height = r.bottom - r.top - app.settings.titleHeight+ 'px'
                     setAttr(fw, 'height',  r.bottom - r.top )
                 }
             } else { // no size, take default values
+                let size = getSizeByRatio([ww, wh], 
+                    app.settings.defaultRatio, app.settings.defaultScale)
                 fw.style.width = app.settings.defaultWidth + 'px'
                 fw.style.height = app.settings.defaultHeight+ 'px'
+                fw.style.width = size[0] + 'px'
+                fw.style.height = size[1]+ 'px'                
             }
+            let sx = parseInt(fw.style.width)
+            let sy = parseInt(fw.style.height)
+            
 
-            if (pars.t) fw.style.top = pars.t + 'px'
+            if (pars.pos) {
+                if (Array.isArray(pars.pos)) {
+                    fw.style.left = pars.pos[0] + 'px'
+                    fw.style.top = pars.pos[1] + 'px'
+                }
+            } else { // no position specified, then center
+                fw.style.left = (ww - sx) / 2 + 'px'
+                fw.style.top= (wh - sy) / 2 + 'px'
+                //fw.style.transform = 'translate(-50%, -50%)'
+            }
+            
             if (pars.trans) {
                 modeTrans = 'start';
                 var origLeft = fw.style.left;
