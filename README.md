@@ -1,6 +1,8 @@
 # jswin
 Window library for javascript
 
+![](demo.gif)
+
 
 Usage:
 Install
